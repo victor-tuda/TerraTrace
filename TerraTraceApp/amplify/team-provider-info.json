@@ -14,6 +14,9 @@
     "categories": {
       "api": {
         "terratraceapp": {}
+      },
+      "auth": {
+        "terratraceapp47c3d6ba": {}
       }
     }
   }
