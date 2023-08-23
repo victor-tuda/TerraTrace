@@ -25,7 +25,6 @@ export const listPlants = /* GraphQL */ `
     listPlants(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        user_id
         name
         createdAt
         updatedAt
