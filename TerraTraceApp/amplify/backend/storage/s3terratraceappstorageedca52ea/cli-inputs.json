@@ -1,0 +1,12 @@
+{
+  "resourceName": "s3terratraceappstorageedca52ea",
+  "bucketName": "terratraceapp-storage-edca52ea",
+  "policyUUID": "436e682e",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}

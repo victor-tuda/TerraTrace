@@ -8,8 +8,8 @@ import {
   SafeAreaView,
 } from 'react-native';
 import {API, graphqlOperation} from 'aws-amplify';
-import {createTodo} from './src/graphql/mutations';
-import {listTodos} from './src/graphql/queries';
+import {createPlant} from './src/graphql/mutations';
+import {listPlants} from './src/graphql/queries';
 import {
   withAuthenticator,
   useAuthenticator,
@@ -33,39 +33,39 @@ const SignOutButton = () => {
   );
 };
 
-const initialFormState = {name: '', description: ''};
+const initialFormState = {name: ''};
 
 const App = () => {
   const [formState, setFormState] = useState(initialFormState);
-  const [todos, setTodos] = useState([]);
+  const [plants, setPlants] = useState([]);
 
   useEffect(() => {
-    fetchTodos();
+    fetchPlants();
   }, []);
 
   function setInput(key, value) {
     setFormState({...formState, [key]: value});
   }
 
-  async function fetchTodos() {
+  async function fetchPlants() {
     try {
-      const todoData = await API.graphql(graphqlOperation(listTodos));
-      const todos = todoData.data.listTodos.items;
-      setTodos(todos);
+      const plantData = await API.graphql(graphqlOperation(listPlants));
+      const plants = plantData.data.listPlants.items;
+      setPlants(plants);
     } catch (err) {
-      console.log('error fetching todos');
+      console.log('error fetching plants');
     }
   }
 
-  async function addTodo() {
+  async function addPlant() {
     try {
-      if (!formState.name || !formState.description) return;
-      const todo = {...formState};
-      setTodos([...todos, todo]);
+      if (!formState.name) return;
+      const plant = {...formState};
+      setPlants([...plants, plant]);
       setFormState(initialFormState);
-      await API.graphql(graphqlOperation(createTodo, {input: todo}));
+      await API.graphql(graphqlOperation(createPlant, {input: plant}));
     } catch (err) {
-      console.log('error creating todo:', err);
+      console.log('error creating plant:', err);
     }
   }
 
@@ -79,19 +79,13 @@ const App = () => {
           value={formState.name}
           placeholder="Name"
         />
-        <TextInput
-          onChangeText={value => setInput('description', value)}
-          style={styles.input}
-          value={formState.description}
-          placeholder="Description"
-        />
-        <Pressable onPress={addTodo} style={styles.buttonContainer}>
-          <Text style={styles.buttonText}>Create todo</Text>
+        <Pressable onPress={addPlant} style={styles.buttonContainer}>
+          <Text style={styles.buttonText}>Create plant</Text>
         </Pressable>
-        {todos.map((todo, index) => (
-          <View key={todo.id ? todo.id : index} style={styles.todo}>
-            <Text style={styles.todoName}>{todo.name}</Text>
-            <Text style={styles.todoDescription}>{todo.description}</Text>
+        {plants.map((plant, index) => (
+          <View key={plant.id ? plant.id : index} style={styles.plant}>
+            <Text style={styles.plantName}>{plant.name}</Text>
+            <Text style={styles.plantDescription}>{plant.description}</Text>
           </View>
         ))}
       </View>
@@ -103,9 +97,9 @@ export default withAuthenticator(App);
 
 const styles = StyleSheet.create({
   container: {width: 400, flex: 1, padding: 20, alignSelf: 'center'},
-  todo: {marginBottom: 15},
+  plant: {marginBottom: 15},
   input: {backgroundColor: '#ddd', marginBottom: 10, padding: 8, fontSize: 18},
-  todoName: {fontSize: 20, fontWeight: 'bold'},
+  plantName: {fontSize: 20, fontWeight: 'bold'},
   buttonContainer: {
     alignSelf: 'center',
     backgroundColor: 'black',

@@ -16,5 +16,11 @@ export type AmplifyDependentResourcesAttributes = {
       "UserPoolId": "string",
       "UserPoolName": "string"
     }
+  },
+  "storage": {
+    "s3terratraceappstorageedca52ea": {
+      "BucketName": "string",
+      "Region": "string"
+    }
   }
 }
