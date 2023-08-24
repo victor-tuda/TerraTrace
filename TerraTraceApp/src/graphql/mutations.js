@@ -8,8 +8,8 @@ export const createPlant = /* GraphQL */ `
   ) {
     createPlant(input: $input, condition: $condition) {
       id
-      user_id
       name
+      owner
       createdAt
       updatedAt
       _version
@@ -26,8 +26,8 @@ export const updatePlant = /* GraphQL */ `
   ) {
     updatePlant(input: $input, condition: $condition) {
       id
-      user_id
       name
+      owner
       createdAt
       updatedAt
       _version
@@ -44,8 +44,8 @@ export const deletePlant = /* GraphQL */ `
   ) {
     deletePlant(input: $input, condition: $condition) {
       id
-      user_id
       name
+      owner
       createdAt
       updatedAt
       _version

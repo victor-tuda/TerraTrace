@@ -5,8 +5,8 @@ export const getPlant = /* GraphQL */ `
   query GetPlant($id: ID!) {
     getPlant(id: $id) {
       id
-      user_id
       name
+      owner
       createdAt
       updatedAt
       _version
@@ -26,6 +26,7 @@ export const listPlants = /* GraphQL */ `
       items {
         id
         name
+        owner
         createdAt
         updatedAt
         _version
@@ -54,8 +55,8 @@ export const syncPlants = /* GraphQL */ `
     ) {
       items {
         id
-        user_id
         name
+        owner
         createdAt
         updatedAt
         _version

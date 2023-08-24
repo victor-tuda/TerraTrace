@@ -1,5 +1,16 @@
-type Plant @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  name: String
+type Plant
+@model
+@aws_cognito_user_pools
+@auth(
+  rules: [
+    {
+      allow: owner,
+      ownerField: "owner",
+      operations: [create, update, delete, read]
+    }
+  ]
+) {
+    id: ID!
+    name: String
+    owner: String
 }
- 

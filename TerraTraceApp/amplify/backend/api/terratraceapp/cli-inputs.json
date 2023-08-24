@@ -4,9 +4,8 @@
     "apiName": "terratraceapp",
     "serviceName": "AppSync",
     "defaultAuthType": {
-      "mode": "API_KEY",
-      "keyDescription": "api key description",
-      "expirationTime": 30
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authterratraceapp47c3d6ba"
     },
     "conflictResolution": {
       "defaultResolutionStrategy": {
@@ -14,6 +13,12 @@
       }
     },
     "additionalAuthTypes": [
+      {
+        "mode": "API_KEY",
+        "expirationTime": 7,
+        "apiKeyExpirationDate": "2023-08-31T18:16:37.130Z",
+        "keyDescription": ""
+      },
       {
         "mode": "AWS_IAM"
       }

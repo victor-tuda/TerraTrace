@@ -2,5 +2,11 @@
   "AppSyncApiName": "terratraceapp",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2023-08-22T19:48:18.492Z"
+  "AuthModeLastUpdated": "2023-08-24T18:16:40.634Z",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authterratraceapp47c3d6ba",
+      "Outputs.UserPoolId"
+    ]
+  }
 }

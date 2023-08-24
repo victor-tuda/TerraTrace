@@ -13,6 +13,7 @@ type EagerPlant = {
   };
   readonly id: string;
   readonly name?: string | null;
+  readonly owner?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -24,6 +25,7 @@ type LazyPlant = {
   };
   readonly id: string;
   readonly name?: string | null;
+  readonly owner?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

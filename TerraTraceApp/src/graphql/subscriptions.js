@@ -2,11 +2,14 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreatePlant = /* GraphQL */ `
-  subscription OnCreatePlant($filter: ModelSubscriptionPlantFilterInput) {
-    onCreatePlant(filter: $filter) {
+  subscription OnCreatePlant(
+    $filter: ModelSubscriptionPlantFilterInput
+    $owner: String
+  ) {
+    onCreatePlant(filter: $filter, owner: $owner) {
       id
-      user_id
       name
+      owner
       createdAt
       updatedAt
       _version
@@ -17,11 +20,14 @@ export const onCreatePlant = /* GraphQL */ `
   }
 `;
 export const onUpdatePlant = /* GraphQL */ `
-  subscription OnUpdatePlant($filter: ModelSubscriptionPlantFilterInput) {
-    onUpdatePlant(filter: $filter) {
+  subscription OnUpdatePlant(
+    $filter: ModelSubscriptionPlantFilterInput
+    $owner: String
+  ) {
+    onUpdatePlant(filter: $filter, owner: $owner) {
       id
-      user_id
       name
+      owner
       createdAt
       updatedAt
       _version
@@ -32,11 +38,14 @@ export const onUpdatePlant = /* GraphQL */ `
   }
 `;
 export const onDeletePlant = /* GraphQL */ `
-  subscription OnDeletePlant($filter: ModelSubscriptionPlantFilterInput) {
-    onDeletePlant(filter: $filter) {
+  subscription OnDeletePlant(
+    $filter: ModelSubscriptionPlantFilterInput
+    $owner: String
+  ) {
+    onDeletePlant(filter: $filter, owner: $owner) {
       id
-      user_id
       name
+      owner
       createdAt
       updatedAt
       _version
