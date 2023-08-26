@@ -1,3 +1,4 @@
+// Importando bibliotecas React
 import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
@@ -7,31 +8,28 @@ import {
   Pressable,
   SafeAreaView,
 } from 'react-native';
-import {API, graphqlOperation} from 'aws-amplify';
+
+// Importando arquivos locais
 import {createPlant} from './src/graphql/mutations';
 import {listPlants} from './src/graphql/queries';
+import SignOutButton  from './src/components/SignOutButton'
+import PopupForm from './src/components/PopUpForm';
+
+// Importando bibliotecas AWS Amplify
+import {API, graphqlOperation} from 'aws-amplify';
 import {
   withAuthenticator,
   useAuthenticator,
 } from '@aws-amplify/ui-react-native';
-
 import { Amplify } from 'aws-amplify';
 import awsExports from './src/aws-exports';
+import { Button } from '@aws-amplify/ui-react-native/dist/primitives';
+
+// Configurando o Amplify
 Amplify.configure(awsExports);
 
-// retrieves only the current value of 'user' from 'useAuthenticator'
+// retorna somente o atual valor de 'user' from 'useAuthenticator'
 const userSelector = (context) => [context.user]
-
-const SignOutButton = () => {
-  const { user, signOut } = useAuthenticator(userSelector);
-  return (
-    <Pressable onPress={signOut} style={styles.buttonContainer}>
-      <Text style={styles.buttonText}>
-        Hello! Click here to sign out!
-      </Text>
-    </Pressable>
-  );
-};
 
 const initialFormState = {name: ''};
 
@@ -47,6 +45,7 @@ const App = () => {
     setFormState({...formState, [key]: value});
   }
 
+  // Função de buscar as plantas do usuário
   async function fetchPlants() {
     try {
       const plantData = await API.graphql(graphqlOperation(listPlants));
@@ -57,6 +56,8 @@ const App = () => {
     }
   }
 
+  // Função de cadastrar planta
+  // Outras funções CRUD em src/graphql/mutations.js
   async function addPlant() {
     try {
       if (!formState.name) return;
@@ -72,22 +73,38 @@ const App = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
-        <SignOutButton />
+        
+        
+        {/* Retorna as plantas do usuário */}
+        {plants.map((plant, index) => (
+          <View key={plant.id ? plant.id : index} style={styles.plant}>
+            <Text style={styles.plantName}>{plant.name}</Text>
+            <Text style={styles.plantDescription}>{plant.description}</Text>
+          </View>
+        ))} 
+
+        {/* Formulário para criar uma nova planta */}
         <TextInput
           onChangeText={value => setInput('name', value)}
           style={styles.input}
           value={formState.name}
           placeholder="Name"
         />
+
+        {/* Tentei criar um formulário, mas ainda não deu certo 
+        Formulário em /components/PopUpForm.js*/}
+        {/* <PopupForm/> */}
+        
+      
+          {/* Botão de criar uma nova planta */}
         <Pressable onPress={addPlant} style={styles.buttonContainer}>
           <Text style={styles.buttonText}>Create plant</Text>
         </Pressable>
-        {plants.map((plant, index) => (
-          <View key={plant.id ? plant.id : index} style={styles.plant}>
-            <Text style={styles.plantName}>{plant.name}</Text>
-            <Text style={styles.plantDescription}>{plant.description}</Text>
-          </View>
-        ))}
+
+          {/* Botão de SignOut */}
+          <SignOutButton userSelector={userSelector}/>
+
+
       </View>
     </SafeAreaView>
   );
@@ -95,6 +112,7 @@ const App = () => {
 
 export default withAuthenticator(App);
 
+// Parte de Design e CSS
 const styles = StyleSheet.create({
   container: {width: 400, flex: 1, padding: 20, alignSelf: 'center'},
   plant: {marginBottom: 15},
