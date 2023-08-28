@@ -21,8 +21,6 @@ const PopupForm = () => {
     closeModal();
   };
 
-  // Migrar essa função para uma pasta de serviços
-  // Visualizar em /src/graphql/mutations.js outras funções CRUD
   async function addPlant() {
     try {
       if (!formState.name) return;
