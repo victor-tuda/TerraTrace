@@ -13,4 +13,13 @@ type Plant
     id: ID!
     name: String
     owner: String
+
+    # Reference the S3Object type from a field.
+    #file: S2Object
 }
+
+#type S3Object {
+#  bucket: String!
+#  region: String!
+#  key: String!
+#}
