@@ -8,24 +8,32 @@ import {
   Pressable,
   SafeAreaView,
 } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 
 // Importando arquivos locais
-import {createPlants} from '../../../src/graphql/mutations';
 import {listPlants} from '../../../src/graphql/queries';
-import SignOutButton  from '../../../src/components/SignOutButton'
-import PopupForm from '../../../src/components/PopUpForm';
 
 // Importando bibliotecas AWS Amplify
 import {API, graphqlOperation} from 'aws-amplify';
 
-const initialFormState = {name: ''};
-
-const Index = ({user}) => {
+const Index = ({user, route}) => {
   const [plants, setPlants] = useState([]);
 
   useEffect(() => {
     fetchPlants();
   }, []);
+
+  const updatePlantsList = React.useCallback(() => {
+    fetchPlants();
+  }, []);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      if (updatePlantsList) {
+        updatePlantsList();
+      }
+    }, [updatePlantsList])
+  );
 
 
   // Função de buscar as plantas do usuário
@@ -51,13 +59,6 @@ const Index = ({user}) => {
             <Text style={styles.plantDescription}>{plant.description}</Text>
           </View>
         ))} 
-
-        {/* Formulário de cadastro*/}
-        <PopupForm/>
-
-          {/* Botão de SignOut */}
-          <SignOutButton userSelector={user}/>
-
 
       </View>
     </SafeAreaView>

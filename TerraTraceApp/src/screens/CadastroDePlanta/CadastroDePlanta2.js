@@ -10,15 +10,15 @@ import {
 } from 'react-native';
 
 // Importando arquivos locais
-import {createPlants} from '../../src/graphql/mutations';
+import {createPlants} from '../../graphql/mutations';
 
 // Importando bibliotecas AWS Amplify
 import {API, graphqlOperation} from 'aws-amplify';
 
 const initialFormState = {name: ''};
 
-const PopupForm = () => {
-  const [modalVisible, setModalVisible] = useState(false);
+const CadastroDePlanta = () => {
+  const [modalVisible, setModalVisible] = useState(true);
   const [formState, setFormState] = useState('');
   const [plants, setPlants] = useState([]);
 
@@ -34,28 +34,29 @@ const PopupForm = () => {
     setModalVisible(false);
   };
 
+  const handleChanges = () => {
+    addPlant();
+    closeModal();
+  };
+
 
   async function addPlant() {
     try {
-      if (!formState.name){
-        console.log("cheguei aqui")
-        return
-      };
+      if (!formState.name) return
+
       const plant = {...formState};
       setPlants([...plants, plant]);
       setFormState(initialFormState);
+      console.log(plant)
       await API.graphql(graphqlOperation(createPlants, {input: plant}));
     } catch (err) {
       console.log('error creating plant:', err);
-    }
+    }    
   }
 
 
   return (
     <View style={styles.container}>
-      <Pressable style={styles.button} onPress={openModal}>
-        <Text style={styles.buttonText}>Cadastrar nova Planta</Text>
-      </Pressable>
       
       <Modal
         animationType="slide"
@@ -71,7 +72,7 @@ const PopupForm = () => {
               value={formState.name}
               placeholder="Digite o nome da planta"
             />
-            <Pressable style={styles.submitButton} onPress={addPlant}>
+            <Pressable style={styles.submitButton} onPress={handleChanges}>
               <Text style={styles.buttonText}>Cadastrar</Text>
             </Pressable>
             <Pressable style={styles.closeButton} onPress={closeModal}>
@@ -131,5 +132,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PopupForm;
+export default CadastroDePlanta;
 
