@@ -1,4 +1,4 @@
-type Plant
+type Plants
 @model
 @aws_cognito_user_pools
 @auth(
@@ -11,6 +11,6 @@ type Plant
   ]
 ) {
     id: ID!
-    name: String
+    name: String!
     owner: String
 }

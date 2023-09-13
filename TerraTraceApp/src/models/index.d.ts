@@ -6,32 +6,32 @@ import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
 
 
 
-type EagerPlant = {
+type EagerPlants = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<Plant, 'id'>;
+    identifier: ManagedIdentifier<Plants, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly name?: string | null;
+  readonly name: string;
   readonly owner?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-type LazyPlant = {
+type LazyPlants = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<Plant, 'id'>;
+    identifier: ManagedIdentifier<Plants, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly name?: string | null;
+  readonly name: string;
   readonly owner?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-export declare type Plant = LazyLoading extends LazyLoadingDisabled ? EagerPlant : LazyPlant
+export declare type Plants = LazyLoading extends LazyLoadingDisabled ? EagerPlants : LazyPlants
 
-export declare const Plant: (new (init: ModelInit<Plant>) => Plant) & {
-  copyOf(source: Plant, mutator: (draft: MutableModel<Plant>) => MutableModel<Plant> | void): Plant;
+export declare const Plants: (new (init: ModelInit<Plants>) => Plants) & {
+  copyOf(source: Plants, mutator: (draft: MutableModel<Plants>) => MutableModel<Plants> | void): Plants;
 }

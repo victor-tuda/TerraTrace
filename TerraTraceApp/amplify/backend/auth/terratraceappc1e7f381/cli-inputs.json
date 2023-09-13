@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "terratraceapp47c3d6ba_identitypool_47c3d6ba",
+    "identityPoolName": "terratraceappc1e7f381_identitypool_c1e7f381",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "terrat47c3d6ba",
-    "userPoolName": "terratraceapp47c3d6ba_userpool_47c3d6ba",
+    "resourceNameTruncated": "terratc1e7f381",
+    "userPoolName": "terratraceappc1e7f381_userpool_c1e7f381",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,10 +31,10 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "terrat47c3d6ba_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "terratc1e7f381_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "47c3d6ba",
-    "resourceName": "terratraceapp47c3d6ba",
+    "sharedId": "c1e7f381",
+    "resourceName": "terratraceappc1e7f381",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "default",
     "userPoolGroupList": [],

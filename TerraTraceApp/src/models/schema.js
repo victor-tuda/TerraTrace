@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "Plant": {
-            "name": "Plant",
+        "Plants": {
+            "name": "Plants",
             "fields": {
                 "id": {
                     "name": "id",
@@ -14,7 +14,7 @@ export const schema = {
                     "name": "name",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "owner": {
@@ -77,5 +77,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "cc33f09bf35d3e607d05f31f6345714f"
+    "version": "b9aed6bc833c14546bad77467e639b75"
 };

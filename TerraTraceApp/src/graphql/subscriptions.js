@@ -1,12 +1,12 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreatePlant = /* GraphQL */ `
-  subscription OnCreatePlant(
-    $filter: ModelSubscriptionPlantFilterInput
+export const onCreatePlants = /* GraphQL */ `
+  subscription OnCreatePlants(
+    $filter: ModelSubscriptionPlantsFilterInput
     $owner: String
   ) {
-    onCreatePlant(filter: $filter, owner: $owner) {
+    onCreatePlants(filter: $filter, owner: $owner) {
       id
       name
       owner
@@ -19,12 +19,12 @@ export const onCreatePlant = /* GraphQL */ `
     }
   }
 `;
-export const onUpdatePlant = /* GraphQL */ `
-  subscription OnUpdatePlant(
-    $filter: ModelSubscriptionPlantFilterInput
+export const onUpdatePlants = /* GraphQL */ `
+  subscription OnUpdatePlants(
+    $filter: ModelSubscriptionPlantsFilterInput
     $owner: String
   ) {
-    onUpdatePlant(filter: $filter, owner: $owner) {
+    onUpdatePlants(filter: $filter, owner: $owner) {
       id
       name
       owner
@@ -37,12 +37,12 @@ export const onUpdatePlant = /* GraphQL */ `
     }
   }
 `;
-export const onDeletePlant = /* GraphQL */ `
-  subscription OnDeletePlant(
-    $filter: ModelSubscriptionPlantFilterInput
+export const onDeletePlants = /* GraphQL */ `
+  subscription OnDeletePlants(
+    $filter: ModelSubscriptionPlantsFilterInput
     $owner: String
   ) {
-    onDeletePlant(filter: $filter, owner: $owner) {
+    onDeletePlants(filter: $filter, owner: $owner) {
       id
       name
       owner

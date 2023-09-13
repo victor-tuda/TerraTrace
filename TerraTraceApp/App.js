@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 // Importando arquivos locais
-import {createPlant} from './src/graphql/mutations';
+import {createPlants} from './src/graphql/mutations';
 import {listPlants} from './src/graphql/queries';
 import SignOutButton  from './src/components/SignOutButton'
 import PopupForm from './src/components/PopUpForm';
@@ -64,7 +64,7 @@ const App = () => {
       const plant = {...formState};
       setPlants([...plants, plant]);
       setFormState(initialFormState);
-      await API.graphql(graphqlOperation(createPlant, {input: plant}));
+      await API.graphql(graphqlOperation(createPlants, {input: plant}));
     } catch (err) {
       console.log('error creating plant:', err);
     }

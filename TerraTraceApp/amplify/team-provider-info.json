@@ -16,7 +16,8 @@
         "terratraceapp": {}
       },
       "auth": {
-        "terratraceapp47c3d6ba": {}
+        "terratraceapp47c3d6ba": {},
+        "terratraceappc1e7f381": {}
       },
       "storage": {
         "s3terratraceappstorageedca52ea": {}

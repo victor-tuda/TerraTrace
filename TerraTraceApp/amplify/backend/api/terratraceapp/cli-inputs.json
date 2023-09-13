@@ -5,7 +5,7 @@
     "serviceName": "AppSync",
     "defaultAuthType": {
       "mode": "AMAZON_COGNITO_USER_POOLS",
-      "cognitoUserPoolId": "authterratraceapp47c3d6ba"
+      "cognitoUserPoolId": "authterratraceappc1e7f381"
     },
     "conflictResolution": {
       "defaultResolutionStrategy": {
@@ -15,8 +15,8 @@
     "additionalAuthTypes": [
       {
         "mode": "API_KEY",
-        "expirationTime": 7,
-        "apiKeyExpirationDate": "2023-08-31T18:16:37.130Z",
+        "expirationTime": 30,
+        "apiKeyExpirationDate": "2023-10-13T01:31:36.512Z",
         "keyDescription": ""
       },
       {

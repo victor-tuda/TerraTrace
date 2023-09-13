@@ -1,9 +1,9 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getPlant = /* GraphQL */ `
-  query GetPlant($id: ID!) {
-    getPlant(id: $id) {
+export const getPlants = /* GraphQL */ `
+  query GetPlants($id: ID!) {
+    getPlants(id: $id) {
       id
       name
       owner
@@ -18,7 +18,7 @@ export const getPlant = /* GraphQL */ `
 `;
 export const listPlants = /* GraphQL */ `
   query ListPlants(
-    $filter: ModelPlantFilterInput
+    $filter: ModelPlantsFilterInput
     $limit: Int
     $nextToken: String
   ) {
@@ -42,7 +42,7 @@ export const listPlants = /* GraphQL */ `
 `;
 export const syncPlants = /* GraphQL */ `
   query SyncPlants(
-    $filter: ModelPlantFilterInput
+    $filter: ModelPlantsFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp

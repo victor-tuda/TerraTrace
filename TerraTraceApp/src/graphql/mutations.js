@@ -1,12 +1,12 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createPlant = /* GraphQL */ `
-  mutation CreatePlant(
-    $input: CreatePlantInput!
-    $condition: ModelPlantConditionInput
+export const createPlants = /* GraphQL */ `
+  mutation CreatePlants(
+    $input: CreatePlantsInput!
+    $condition: ModelPlantsConditionInput
   ) {
-    createPlant(input: $input, condition: $condition) {
+    createPlants(input: $input, condition: $condition) {
       id
       name
       owner
@@ -19,12 +19,12 @@ export const createPlant = /* GraphQL */ `
     }
   }
 `;
-export const updatePlant = /* GraphQL */ `
-  mutation UpdatePlant(
-    $input: UpdatePlantInput!
-    $condition: ModelPlantConditionInput
+export const updatePlants = /* GraphQL */ `
+  mutation UpdatePlants(
+    $input: UpdatePlantsInput!
+    $condition: ModelPlantsConditionInput
   ) {
-    updatePlant(input: $input, condition: $condition) {
+    updatePlants(input: $input, condition: $condition) {
       id
       name
       owner
@@ -37,12 +37,12 @@ export const updatePlant = /* GraphQL */ `
     }
   }
 `;
-export const deletePlant = /* GraphQL */ `
-  mutation DeletePlant(
-    $input: DeletePlantInput!
-    $condition: ModelPlantConditionInput
+export const deletePlants = /* GraphQL */ `
+  mutation DeletePlants(
+    $input: DeletePlantsInput!
+    $condition: ModelPlantsConditionInput
   ) {
-    deletePlant(input: $input, condition: $condition) {
+    deletePlants(input: $input, condition: $condition) {
       id
       name
       owner
