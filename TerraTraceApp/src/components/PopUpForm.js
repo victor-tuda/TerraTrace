@@ -1,11 +1,30 @@
-import React, { useState } from 'react';
-import { View, Text, Modal, Pressable, TextInput, StyleSheet } from 'react-native';
-import {createPlant} from '../../src/graphql/mutations';
-import {listPlants} from '../../src/graphql/queries';
+// Importando bibliotecas React
+import React, {useEffect, useState} from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Pressable,
+  Modal
+} from 'react-native';
+
+// Importando arquivos locais
+import {createPlants} from '../../src/graphql/mutations';
+
+// Importando bibliotecas AWS Amplify
+import {API, graphqlOperation} from 'aws-amplify';
+
+const initialFormState = {name: ''};
 
 const PopupForm = () => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [inputValue, setInputValue] = useState('');
+  const [formState, setFormState] = useState('');
+  const [plants, setPlants] = useState([]);
+
+  function setInput(key, value) {
+    setFormState({...formState, [key]: value});
+  }
 
   const openModal = () => {
     setModalVisible(true);
@@ -15,34 +34,22 @@ const PopupForm = () => {
     setModalVisible(false);
   };
 
-  const handleSubmit = () => {
-    // Perform any actions you need with the inputValue
-    console.log('Submitted value:', inputValue);
-    closeModal();
-  };
 
   async function addPlant() {
     try {
-      if (!formState.name) return;
+      if (!formState.name){
+        console.log("cheguei aqui")
+        return
+      };
       const plant = {...formState};
       setPlants([...plants, plant]);
       setFormState(initialFormState);
-      await API.graphql(graphqlOperation(createPlant, {input: plant}));
+      await API.graphql(graphqlOperation(createPlants, {input: plant}));
     } catch (err) {
       console.log('error creating plant:', err);
     }
   }
 
-  // Migrar essa função para uma pasta de serviços
-  async function fetchPlants() {
-    try {
-      const plantData = await API.graphql(graphqlOperation(listPlants));
-      const plants = plantData.data.listPlants.items;
-      setPlants(plants);
-    } catch (err) {
-      console.log('error fetching plants');
-    }
-  }
 
   return (
     <View style={styles.container}>
@@ -59,12 +66,12 @@ const PopupForm = () => {
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <TextInput
+              onChangeText={value => setInput('name', value)}
               style={styles.input}
+              value={formState.name}
               placeholder="Digite o nome da planta"
-              onChangeText={value => setInputValue('name', value)}
-              value={inputValue}
             />
-            <Pressable style={styles.submitButton} onPress={handleSubmit}>
+            <Pressable style={styles.submitButton} onPress={addPlant}>
               <Text style={styles.buttonText}>Cadastrar</Text>
             </Pressable>
             <Pressable style={styles.closeButton} onPress={closeModal}>
