@@ -10,6 +10,12 @@ export const onCreatePlants = /* GraphQL */ `
       id
       name
       owner
+      file {
+        bucket
+        region
+        key
+        __typename
+      }
       createdAt
       updatedAt
       _version
@@ -28,6 +34,12 @@ export const onUpdatePlants = /* GraphQL */ `
       id
       name
       owner
+      file {
+        bucket
+        region
+        key
+        __typename
+      }
       createdAt
       updatedAt
       _version
@@ -46,6 +58,12 @@ export const onDeletePlants = /* GraphQL */ `
       id
       name
       owner
+      file {
+        bucket
+        region
+        key
+        __typename
+      }
       createdAt
       updatedAt
       _version

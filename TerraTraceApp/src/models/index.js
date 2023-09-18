@@ -4,8 +4,9 @@ import { schema } from './schema';
 
 
 
-const { Plants } = initSchema(schema);
+const { Plants, S3Object } = initSchema(schema);
 
 export {
-  Plants
+  Plants,
+  S3Object
 };

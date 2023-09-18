@@ -24,6 +24,15 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "file": {
+                    "name": "file",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "S3Object"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -75,7 +84,34 @@ export const schema = {
         }
     },
     "enums": {},
-    "nonModels": {},
+    "nonModels": {
+        "S3Object": {
+            "name": "S3Object",
+            "fields": {
+                "bucket": {
+                    "name": "bucket",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "region": {
+                    "name": "region",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "key": {
+                    "name": "key",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                }
+            }
+        }
+    },
     "codegenVersion": "3.4.4",
-    "version": "b9aed6bc833c14546bad77467e639b75"
+    "version": "e837748c064d0fe5bebc6843b827e36c"
 };

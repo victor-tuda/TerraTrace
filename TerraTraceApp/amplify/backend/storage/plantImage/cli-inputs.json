@@ -1,0 +1,14 @@
+{
+  "resourceName": "plantImage",
+  "policyUUID": "00674362",
+  "bucketName": "terratraceapp5bb25a1b915445dd859aec7ae6b7c8f7",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

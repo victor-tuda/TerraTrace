@@ -7,6 +7,12 @@ export const getPlants = /* GraphQL */ `
       id
       name
       owner
+      file {
+        bucket
+        region
+        key
+        __typename
+      }
       createdAt
       updatedAt
       _version
@@ -27,6 +33,12 @@ export const listPlants = /* GraphQL */ `
         id
         name
         owner
+        file {
+          bucket
+          region
+          key
+          __typename
+        }
         createdAt
         updatedAt
         _version

@@ -7,6 +7,7 @@ import {
   TextInput,
   Pressable,
   SafeAreaView,
+  Image
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -14,10 +15,11 @@ import { useFocusEffect } from '@react-navigation/native';
 import {listPlants} from '../../../src/graphql/queries';
 
 // Importando bibliotecas AWS Amplify
-import {API, graphqlOperation} from 'aws-amplify';
+import {API, graphqlOperation, Storage, Auth } from 'aws-amplify';
 
 const Index = ({user, route}) => {
   const [plants, setPlants] = useState([]);
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     fetchPlants();
@@ -34,6 +36,16 @@ const Index = ({user, route}) => {
       }
     }, [updatePlantsList])
   );
+
+  downloadImage = (uri) => {
+    Storage.get(uri)
+      .then((result) => {
+        setImage(result)
+        //console.log(result)
+      })
+      .catch((err) => console.log(err));
+     
+  };
 
 
   // Função de buscar as plantas do usuário
@@ -56,7 +68,11 @@ const Index = ({user, route}) => {
         {plants.map((plant, index) => (
           <View key={plant.id ? plant.id : index} style={styles.plant}>
             <Text style={styles.plantName}>{plant.name}</Text>
-            <Text style={styles.plantDescription}>{plant.description}</Text>
+            {/* <Image 
+              source={ downloadImage(plants[index].file.key) } 
+              style={{ width: 250, height: 250 }}
+            /> */}
+            
           </View>
         ))} 
 

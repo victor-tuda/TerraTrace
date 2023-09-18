@@ -63,5 +63,11 @@
       "service": "Cognito"
     }
   },
-  "storage": {}
+  "storage": {
+    "plantImage": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
+    }
+  }
 }

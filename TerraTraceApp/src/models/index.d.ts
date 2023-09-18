@@ -4,7 +4,21 @@ import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
 
 
 
+type EagerS3Object = {
+  readonly bucket: string;
+  readonly region: string;
+  readonly key: string;
+}
 
+type LazyS3Object = {
+  readonly bucket: string;
+  readonly region: string;
+  readonly key: string;
+}
+
+export declare type S3Object = LazyLoading extends LazyLoadingDisabled ? EagerS3Object : LazyS3Object
+
+export declare const S3Object: (new (init: ModelInit<S3Object>) => S3Object)
 
 type EagerPlants = {
   readonly [__modelMeta__]: {
@@ -14,6 +28,7 @@ type EagerPlants = {
   readonly id: string;
   readonly name: string;
   readonly owner?: string | null;
+  readonly file?: S3Object | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -26,6 +41,7 @@ type LazyPlants = {
   readonly id: string;
   readonly name: string;
   readonly owner?: string | null;
+  readonly file?: S3Object | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
