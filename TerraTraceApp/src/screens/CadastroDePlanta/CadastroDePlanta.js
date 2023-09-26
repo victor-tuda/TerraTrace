@@ -24,7 +24,7 @@ const CadastroDePlanta = () => {
   const navigation = useNavigation(); // Variavel de navegação
 
   const [image, setImage] = useState(null); // variaveis de imagem
-  const [blob, setBlob] = useState(null);
+  const [blob, setBlob] = useState(null); // variaveis que geram o objeto Blob
   const [percentage, setPercentage] = useState(0); // variaveis de perncentual
 
   const {
@@ -37,8 +37,9 @@ const CadastroDePlanta = () => {
     },
   })
 
-  useEffect(() => { //
-    (async () => {
+  // Solicitar permissão de acesso a câmera para celulares
+  useEffect(() => { 
+    (async () => { 
       if (Constants.platform.ios) {
         const cameraRollStatus =
           await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -53,6 +54,7 @@ const CadastroDePlanta = () => {
     })();
   }, []);
 
+  // Função para obter a imagem a partir da foto
   const takePhoto = async () => {
     let result = await ImagePicker.launchCameraAsync({
       mediaTypes: "Images",
@@ -63,6 +65,7 @@ const CadastroDePlanta = () => {
     this.handleImagePicked(result.assets[0]);
   };
 
+  // Função para obter a imagem a partir da galeria
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: "Images",
@@ -74,6 +77,7 @@ const CadastroDePlanta = () => {
     this.handleImagePicked(result.assets[0]);
   };
 
+  // Lidar com a imagem obtida através da foto ou galeria
   handleImagePicked = async (pickerResult) => {
     try {
       if (pickerResult.cancelled) {
@@ -81,10 +85,9 @@ const CadastroDePlanta = () => {
         return;
       } else {
         setPercentage(0);
-        const blobFile = await uriToBlob(pickerResult.uri);
+        const blobFile = await uriToBlob(pickerResult.uri); // Gerando o objeto blob a partir do caminho da imagem
         setBlob(blobFile);
-        setImage(pickerResult.uri);
-        //downloadImage(pickerResult.uri);
+        setImage(pickerResult.uri); // Mostrando a imagem recebida pela foto ou galeria
       }
     } catch (e) {
       console.log(e);
@@ -92,6 +95,7 @@ const CadastroDePlanta = () => {
     }
   };
 
+  // Função para enviar a imagem ao Storage S3
   uploadImage = async (filename, blobFile) => {
     return Storage.put(filename, blobFile, {
       level: "private",
@@ -109,42 +113,38 @@ const CadastroDePlanta = () => {
       });
   };
   
-
+  // Função para mostrar o loading da imagem ao S3
   const setLoading = (progress) => {
     const calculated = parseInt((progress.loaded / progress.total) * 100);
-    updatePercentage(calculated); // due to s3 put function scoped
+    updatePercentage(calculated);
   };
 
+  // Função para atualizar o loading de envio da imagem ao S3
   const updatePercentage = (number) => {
     setPercentage(number);
   };
 
-  downloadImage = (uri) => {
-    Storage.get(uri)
-      .then((result) => setImage(result))
-      .catch((err) => console.log(err));
-  };
-
+  // Copiar a imagem para o clipboard - Talvez remova a função
   const copyToClipboard = () => {
     Clipboard.setString(image);
-    alert("Copied image URL to clipboard");
+    alert("URL da imagem copiada");
   };
 
 
-
+  // Função chamada ao realizar o envio do formulário
   const onSubmit = async (data) => {
-    file = {
+    file = { // estruturando o arquivo da imagem com configurações de ambiente da aws
       bucket: awsExports.aws_user_files_s3_bucket,
       region: awsExports.aws_user_files_s3_bucket_region,
       key: `plants/${data.name}`
     }
-    addPlant(data, file);
 
-    await uploadImage(`plants/${data.name}.jpeg`, blob);
+    addPlant(data, file); // enviando os dados do formulário + imagem para o DynamoDB
+
+    await uploadImage(`plants/${data.name}.jpeg`, blob); // enviando o arquivo de imagem para o S3
     
-    navigation.navigate('Home')
+    navigation.navigate('Home') // retornar para a página Home
   }
-
 
   return (
       <View>

@@ -18,7 +18,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "storage": {
-    "plantImage": {
+    "s3161d68a4": {
       "BucketName": "string",
       "Region": "string"
     }

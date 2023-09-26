@@ -1,7 +1,7 @@
 {
-  "resourceName": "plantImage",
-  "policyUUID": "00674362",
-  "bucketName": "terratraceapp5bb25a1b915445dd859aec7ae6b7c8f7",
+  "resourceName": "s3161d68a4",
+  "policyUUID": "161d68a4",
+  "bucketName": "terratraceapp7263e75692f741a7b51fc59cb0549985",
   "storageAccess": "auth",
   "guestAccess": [],
   "authAccess": [
