@@ -10,8 +10,9 @@ import SignOut from './src/components/SignOut';
 
 // Importando bibliotecas AWS Amplify
 import { withAuthenticator} from '@aws-amplify/ui-react-native';
-import { Amplify } from 'aws-amplify';
+import { Amplify, Auth } from 'aws-amplify';
 import awsExports from './src/aws-exports';
+import config from './src/aws-exports';
 
 import { Ionicons } from '@expo/vector-icons';
 
@@ -19,6 +20,9 @@ import { Ionicons } from '@expo/vector-icons';
 
 // Configurando o Amplify
 Amplify.configure(awsExports);
+Auth.configure({...config, authenticationFlowType: "USER_PASSWORD_AUTH"});
+
+Amplify.Logger.LOG_LEVEL = "DEBUG"
 
 // retorna somente o atual valor de 'user' from 'useAuthenticator'
 const userSelector = (context) => [context.user]
