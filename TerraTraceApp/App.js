@@ -3,10 +3,17 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 
+
+
 // Importando arquivos locais
 import HomeScreen from './src/screens/HomeScreen';
 import CadastroDePlanta from './src/screens/CadastroDePlanta';
 import SignOut from './src/components/SignOut';
+import Index from './src/screens/HomeScreen/index'
+import Dashboard from './src/screens/Dashboard/Dashboard'; // Importe a página Dashboard
+
+
+
 
 // Importando bibliotecas AWS Amplify
 import { withAuthenticator} from '@aws-amplify/ui-react-native';
@@ -34,9 +41,10 @@ const App = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator 
+      
         initialRouteName='Home'
         screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
+          tabBarIcon: ({ focused, color, size }) => { // Adiciona os ícones dos botões
             let iconName;
             if (route.name === 'Home') {
               iconName = focused ? 'home' : 'home-outline';
@@ -44,7 +52,7 @@ const App = () => {
             else if (route.name === 'Sair') {
               iconName = focused ? 'exit' : 'exit-outline';
             }
-           else if (route.name === 'Nova Planta') {
+           else if (route.name === 'Criar Planta') {
             iconName = focused ? 'add' : 'add-outline';
             }  
 
@@ -52,25 +60,28 @@ const App = () => {
             return <Ionicons name={iconName} size={size} color={color} />;
 
           },
-          tabBarActiveTintColor: "tomato",
+          tabBarActiveTintColor: "green",
           tabBarInactiveTintColor: "gray",
           tabBarStyle: [
             {
               "display": "flex"
             },
             null
-          ]
+          ],
+          headerShown: false, // Oculta os títulos das páginas
       })}
     >
 
       <Tab.Screen name="Sair" component={SignOut} />
-      <Tab.Screen name="Nova Planta" component={CadastroDePlanta} />
+      <Tab.Screen name="Criar Planta" component={CadastroDePlanta} />
       <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Dashboard" component={Dashboard} />
+      
+      
 
     </Tab.Navigator>
 
   </NavigationContainer>
   );
 };
-
 export default withAuthenticator(App);
