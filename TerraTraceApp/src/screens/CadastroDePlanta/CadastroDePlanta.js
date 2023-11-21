@@ -139,9 +139,10 @@ const CadastroDePlanta = () => {
       key: `plants/${data.name}`
     }
 
-    addPlant(data, file); // enviando os dados do formulário + imagem para o DynamoDB
+    addPlant(data);
+    //addPlant(data, file); // enviando os dados do formulário + imagem para o DynamoDB
 
-    await uploadImage(`plants/${data.name}.jpeg`, blob); // enviando o arquivo de imagem para o S3
+    //await uploadImage(`plants/${data.name}.jpeg`, blob); // enviando o arquivo de imagem para o S3
     
     navigation.navigate('Home') // retornar para a página Home
   }
